@@ -1,7 +1,7 @@
 {
-  "name": "@easy-work/base",
+  "name": "@easy-work/antv",
   "version": "0.0.1",
-  "description": "base components",
+  "description": "antv components",
   "main": "index.ts",
   "module": "index.ts",
   "unpkg": "index.js",
