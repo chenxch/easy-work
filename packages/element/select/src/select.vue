@@ -8,7 +8,14 @@ const slots = useSlots()
 const options = slots.default()[0].children.map(o => o.props)
 const attrs = useAttrs()
 const text = computed(() => {
-  return options.find(o => o.value === attrs.modelValue).label
+  const vlaue = attrs.multiple !== undefined && attrs.multiple !== false ? attrs.modelValue : attrs.modelValue ? [attrs.modelValue] : []
+  const lables = vlaue.reduce((prev, curr) => {
+    const item = options.find(o => o.value === curr)
+    if (item)
+      prev.push(item.label)
+    return prev
+  }, [])
+  return lables.join(',')
 })
 </script>
 

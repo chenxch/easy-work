@@ -9,6 +9,7 @@ const toggle = ref(false)
 const text = ref('')
 
 const value = ref('')
+const valueArr = ref([])
 
 const options = [
   {
@@ -45,15 +46,35 @@ const options = [
   <button @click="toggle = !toggle">
     toggle
   </button>
-  <EgInput v-model="text" :toggle="toggle" />
-  <EgSelect v-model="value" class="m-2" placeholder="Select" :toggle="toggle">
-    <el-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
-    />
-  </EgSelect>
+  <ElForm
+    label-width="100px"
+    style="max-width: 460px"
+  >
+    <ElFormItem label="文本框">
+      <EgInput v-model="text" :toggle="toggle" />
+    </ElFormItem>
+    <ElFormItem label="下拉框--单选">
+      <EgSelect v-model="value" class="m-2" placeholder="Select" :toggle="toggle">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </EgSelect>
+    </ElFormItem>
+    <ElFormItem label="下拉框--多选">
+      <EgSelect v-model="valueArr" class="m-2" placeholder="Select" :toggle="toggle" multiple>
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </EgSelect>
+    </ElFormItem>
+  </ElForm>
+  <ElForm />
 </template>
 
 <style>
