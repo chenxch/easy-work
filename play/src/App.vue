@@ -3,7 +3,7 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import { ref } from 'vue'
 import { EgToggle } from '@easy-work/base'
-import { EgInput, EgSelect, EgForm } from '@easy-work/element'
+import { EgInput, EgSelect, EgForm, EgFormItem } from '@easy-work/element'
 const toggle = ref(false)
 const text = ref('')
 
@@ -94,6 +94,19 @@ const options = [
         />
       </EgSelect>
     </ElFormItem>
+    <EgFormItem label="下拉框--多选" :toggle="!toggle">
+      <EgSelect v-model="valueArr" class="m-2" placeholder="Select" :toggle="toggle" multiple>
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+        <template #content>
+          我是EgFormItem
+          </template>
+      </EgSelect>
+    </EgFormItem>
   </EgForm>
 </template>
 

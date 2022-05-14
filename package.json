@@ -52,6 +52,7 @@
   "dependencies": {
     "@easy-work/base": "workspace:^0.0.1",
     "@easy-work/element": "workspace:^0.0.1",
+    "@easy-work/hooks": "workspace:^0.0.1",
     "@easy-work/tokens": "workspace:^0.0.1",
     "@easy-work/utils": "workspace:*"
   }

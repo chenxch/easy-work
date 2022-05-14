@@ -13,6 +13,7 @@ importers:
       '@antfu/eslint-config': ^0.23.1
       '@easy-work/base': workspace:^0.0.1
       '@easy-work/element': workspace:^0.0.1
+      '@easy-work/hooks': workspace:^0.0.1
       '@easy-work/tokens': workspace:^0.0.1
       '@easy-work/utils': workspace:*
       '@types/node': ^17.0.33
@@ -32,6 +33,7 @@ importers:
     dependencies:
       '@easy-work/base': link:packages/base
       '@easy-work/element': link:packages/element
+      '@easy-work/hooks': link:packages/hooks
       '@easy-work/tokens': link:packages/tokens
       '@easy-work/utils': link:packages/utils
     devDependencies:

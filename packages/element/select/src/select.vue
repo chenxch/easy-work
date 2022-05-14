@@ -1,13 +1,13 @@
 <script setup>
 import { EgToggle } from '@easy-work/base'
 import { formContextKey } from '@easy-work/tokens'
+import { useToggle } from '@easy-work/hooks'
 import { ElSelect } from 'element-plus'
-import { defineProps, useAttrs, useSlots, inject } from 'vue'
+import { defineProps, useAttrs, useSlots } from 'vue'
 import { selectProps } from './index'
 const props = defineProps(selectProps)
 const slots = useSlots()
 const attrs = useAttrs()
-const elFrom = inject(formContextKey, {})
 const getText = () => {
   const options = slots.default()[0].children.map(o => o.props)
   const vlaue = attrs.multiple !== undefined && attrs.multiple !== false ? attrs.modelValue : attrs.modelValue ? [attrs.modelValue] : []
@@ -19,10 +19,12 @@ const getText = () => {
   }, [])
   return lables.join(',')
 }
+
+const disyplyToggle = useToggle()
 </script>
 
 <template>
-  <EgToggle :toggle="toggle||elFrom.toggle">
+  <EgToggle :toggle="disyplyToggle">
     <ElSelect v-bind="$attrs">
       <slot name="default" />
     </ElSelect>

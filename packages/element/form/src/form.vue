@@ -1,8 +1,8 @@
 <script setup>
-import { formContextKey } from '@easy-work/tokens'
 import { defineProps, provide } from 'vue'
 import { ElForm } from 'element-plus'
 import { formProps } from './index'
+import { formContextKey } from '@easy-work/tokens'
 
 const props = defineProps(formProps)
 

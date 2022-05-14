@@ -7,3 +7,8 @@ export const formProps = {
 export type FormProps = ExtractPropTypes<typeof formProps>
 
 export type FormInstance = InstanceType<typeof Form>
+
+export const formItemProps = {
+  toggle: { type: Boolean, default: false },
+}
+export type FormItemProps = ExtractPropTypes<typeof formItemProps>
