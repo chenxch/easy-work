@@ -1,16 +1,22 @@
 <script setup>
 import { EgToggle } from '@easy-work/base'
+import { formContextKey } from '@easy-work/tokens'
 import { ElInput } from 'element-plus'
-import { defineProps } from 'vue'
+import { defineProps, useSlots,inject } from 'vue'
 import { inputProps } from './index'
 const props = defineProps(inputProps)
+const slots = useSlots()
+const elForm = inject(formContextKey, {})
 </script>
 
 <template>
-  <EgToggle :toggle="toggle">
+  <EgToggle :toggle="toggle||elForm.toggle">
     <ElInput v-bind="$attrs" />
     <template #toggle>
-      {{ $attrs.modelValue }}
+      <slot name="content" />
+      <template v-if="!slots.content">
+        {{ $attrs.modelValue }}
+      </template>
     </template>
   </EgToggle>
 </template>

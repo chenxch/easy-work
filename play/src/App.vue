@@ -3,8 +3,7 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import { ref } from 'vue'
 import { EgToggle } from '@easy-work/base'
-import { EgInput, EgSelect } from '@easy-work/element'
-import HelloWorld from './components/HelloWorld.vue'
+import { EgInput, EgSelect, EgForm } from '@easy-work/element'
 const toggle = ref(false)
 const text = ref('')
 
@@ -36,16 +35,10 @@ const options = [
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <EgToggle>
-    <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
-    <template #toggle>
-      xc
-    </template>
-  </EgToggle>
   <button @click="toggle = !toggle">
     toggle
   </button>
+  el-form:
   <ElForm
     label-width="100px"
     style="max-width: 460px"
@@ -74,7 +67,34 @@ const options = [
       </EgSelect>
     </ElFormItem>
   </ElForm>
-  <ElForm />
+  eg-form:
+  <EgForm :toggle="toggle"
+    label-width="100px"
+    style="max-width: 460px">
+    <ElFormItem label="文本框">
+      <EgInput v-model="text" />
+    </ElFormItem>
+     <ElFormItem label="下拉框--单选">
+      <EgSelect v-model="value" class="m-2" placeholder="Select" :toggle="toggle">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </EgSelect>
+    </ElFormItem>
+    <ElFormItem label="下拉框--多选">
+      <EgSelect v-model="valueArr" class="m-2" placeholder="Select" :toggle="toggle" multiple>
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </EgSelect>
+    </ElFormItem>
+  </EgForm>
 </template>
 
 <style>
