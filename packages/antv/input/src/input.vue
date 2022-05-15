@@ -1,0 +1,23 @@
+<script setup>
+import { EgToggle } from '@easy-work/base'
+import { formContextKey } from '@easy-work/tokens'
+import { useToggle } from '@easy-work/hooks'
+import { Input as ElInput } from 'ant-design-vue'
+import { defineProps, useSlots } from 'vue'
+import { inputProps } from './index'
+const props = defineProps(inputProps)
+const slots = useSlots()
+const dislayToggle = useToggle()
+</script>
+
+<template>
+  <EgToggle :toggle="dislayToggle">
+    <ElInput v-bind="$attrs" />
+    <template #toggle>
+      <slot name="content" />
+      <div v-if="!slots.content">
+        {{ $attrs.value }}
+      </div>
+    </template>
+  </EgToggle>
+</template>

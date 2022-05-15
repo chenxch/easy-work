@@ -51,6 +51,7 @@
     "extends": "@antfu"
   },
   "dependencies": {
+    "@easy-work/antv": "workspace:^0.0.1",
     "@easy-work/base": "workspace:^0.0.1",
     "@easy-work/element": "workspace:^0.0.1",
     "@easy-work/hooks": "workspace:^0.0.1",

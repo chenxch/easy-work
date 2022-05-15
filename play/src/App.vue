@@ -4,6 +4,7 @@
 import { ref,reactive } from 'vue'
 import { EgToggle } from '@easy-work/base'
 import { EgInput, EgSelect, EgForm, EgFormItem, EgDatePicker, EgTimePicker } from '@easy-work/element'
+import { EgInput as AEgInput } from '@easy-work/antv'
 const toggle = ref(false)
 const text = ref('')
 
@@ -56,6 +57,7 @@ const onSubmit = () => {
   <button @click="toggle = !toggle">
     toggle
   </button>
+  <AEgInput v-model:value="text" :toggle="toggle" />
   el-Form:
   <ElForm
     label-width="100px"
