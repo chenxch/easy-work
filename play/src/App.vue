@@ -4,7 +4,14 @@
 import { ref,reactive } from 'vue'
 import { EgToggle } from '@easy-work/base'
 import { EgInput, EgSelect, EgForm, EgFormItem, EgDatePicker, EgTimePicker } from '@easy-work/element'
-import { EgInput as AEgInput } from '@easy-work/antv'
+import { 
+  EgInput as AEgInput,
+  EgSelect as AEgSelect,
+  EgForm  as AEgForm,
+  EgFormItem as AEgFormItem,
+  EgDatePicker as AEgDatePicker, 
+  EgTimePicker as AEgTimePicker
+ } from '@easy-work/antv'
 const toggle = ref(false)
 const text = ref('')
 
@@ -51,13 +58,25 @@ const form = reactive({
 const onSubmit = () => {
   console.log('submit!')
 }
+
+ const formState = reactive({
+      username: '',
+      password: '',
+      remember: true,
+    });
+    const onFinish = (values) => {
+      console.log('Success:', values);
+    };
+
+    const onFinishFailed = (errorInfo) => {
+      console.log('Failed:', errorInfo);
+    };
 </script>
 
 <template>
   <button @click="toggle = !toggle">
     toggle
   </button>
-  <AEgInput v-model:value="text" :toggle="toggle" />
   el-Form:
   <ElForm
     label-width="100px"
@@ -152,6 +171,43 @@ const onSubmit = () => {
       <el-button>Cancel</el-button>
     </EgFormItem>
   </EgForm>
+  antv-form:
+  <AEgForm
+  :toggle="toggle"
+    :model="formState"
+    name="basic"
+    :label-col="{ span: 8 }"
+    :wrapper-col="{ span: 16 }"
+    autocomplete="off"
+    @finish="onFinish"
+    @finishFailed="onFinishFailed"
+  >
+    <AEgFormItem
+      label="Username"
+      name="username"
+      :rules="[{ required: true, message: 'Please input your username!' }]"
+    >
+      <AEgInput v-model:value="formState.username" />
+    </AEgFormItem>
+
+     <AEgFormItem label="Activity zone">
+      <AEgSelect v-model:value="form.region" placeholder="please select your zone" :options="[{
+        label: 'Zone one',
+        value: 'shanghai'
+      }, {
+        label: 'Zone two',
+        value: 'beijing'
+      }]" />
+    </AEgFormItem>
+
+    <AEgFormItem name="remember" :wrapper-col="{ offset: 8, span: 16 }">
+      <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
+    </AEgFormItem>
+
+    <AEgFormItem :wrapper-col="{ offset: 8, span: 16 }">
+      <a-button type="primary" html-type="submit">Submit</a-button>
+    </AEgFormItem>
+  </AEgForm>
 </template>
 
 <style>

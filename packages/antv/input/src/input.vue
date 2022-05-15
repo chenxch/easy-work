@@ -2,7 +2,7 @@
 import { EgToggle } from '@easy-work/base'
 import { formContextKey } from '@easy-work/tokens'
 import { useToggle } from '@easy-work/hooks'
-import { Input as ElInput } from 'ant-design-vue'
+import { Input as AInput } from 'ant-design-vue'
 import { defineProps, useSlots } from 'vue'
 import { inputProps } from './index'
 const props = defineProps(inputProps)
@@ -12,7 +12,7 @@ const dislayToggle = useToggle()
 
 <template>
   <EgToggle :toggle="dislayToggle">
-    <ElInput v-bind="$attrs" />
+    <AInput v-bind="$attrs" />
     <template #toggle>
       <slot name="content" />
       <div v-if="!slots.content">
