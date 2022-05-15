@@ -1,14 +1,15 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import { ref } from 'vue'
+import { ref,reactive } from 'vue'
 import { EgToggle } from '@easy-work/base'
-import { EgInput, EgSelect, EgForm, EgFormItem } from '@easy-work/element'
+import { EgInput, EgSelect, EgForm, EgFormItem, EgDatePicker, EgTimePicker } from '@easy-work/element'
 const toggle = ref(false)
 const text = ref('')
 
 const value = ref('')
 const valueArr = ref([])
+const date = ref('')
 
 const options = [
   {
@@ -32,13 +33,30 @@ const options = [
     label: 'Option5',
   },
 ]
+
+
+// do not use same name with ref
+const form = reactive({
+  name: '',
+  region: '',
+  date1: '',
+  date2: '',
+  delivery: false,
+  type: [],
+  resource: '',
+  desc: '',
+})
+
+const onSubmit = () => {
+  console.log('submit!')
+}
 </script>
 
 <template>
   <button @click="toggle = !toggle">
     toggle
   </button>
-  el-form:
+  el-Form:
   <ElForm
     label-width="100px"
     style="max-width: 460px"
@@ -68,44 +86,68 @@ const options = [
     </ElFormItem>
   </ElForm>
   eg-form:
-  <EgForm :toggle="toggle"
-    label-width="100px"
-    style="max-width: 460px">
-    <ElFormItem label="文本框">
-      <EgInput v-model="text" />
-    </ElFormItem>
-     <ElFormItem label="下拉框--单选">
-      <EgSelect v-model="value" class="m-2" placeholder="Select" :toggle="toggle">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
+  <EgForm :model="form" label-width="120px" :toggle="toggle">
+    <EgFormItem label="Activity name">
+      <EgInput v-model="form.name" />
+    </EgFormItem>
+    <EgFormItem label="Activity zone">
+      <EgSelect v-model="form.region" placeholder="please select your zone">
+        <el-option label="Zone one" value="shanghai" />
+        <el-option label="Zone two" value="beijing" />
       </EgSelect>
-    </ElFormItem>
-    <ElFormItem label="下拉框--多选">
-      <EgSelect v-model="valueArr" class="m-2" placeholder="Select" :toggle="toggle" multiple>
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </EgSelect>
-    </ElFormItem>
-    <EgFormItem label="下拉框--多选" :toggle="!toggle">
-      <EgSelect v-model="valueArr" class="m-2" placeholder="Select" :toggle="toggle" multiple>
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
+    </EgFormItem>
+     <EgFormItem label="Activity zone mutiple" :toggle="!toggle">
+      <EgSelect v-model="form.region" placeholder="please select your zone" mutiple>
+        <el-option label="Zone one" value="shanghai" />
+        <el-option label="Zone two" value="beijing" />
         <template #content>
-          我是EgFormItem
-          </template>
+          我是item控制的
+        </template>
       </EgSelect>
+    </EgFormItem>
+    <EgFormItem label="Activity time">
+      <el-col :span="11">
+        <EgDatePicker
+          v-model="form.date1"
+          type="date"
+          placeholder="Pick a date"
+          style="width: 100%"
+        />
+      </el-col>
+      <el-col :span="2" class="text-center">
+        <span class="text-gray-500">-</span>
+      </el-col>
+      <el-col :span="11">
+        <EgTimePicker
+          v-model="form.date2"
+          placeholder="Pick a time"
+          style="width: 100%"
+        />
+      </el-col>
+    </EgFormItem>
+    <EgFormItem label="Instant delivery">
+      <el-switch v-model="form.delivery" />
+    </EgFormItem>
+    <EgFormItem label="Activity type">
+      <el-checkbox-group v-model="form.type">
+        <el-checkbox label="Online activities" name="type" />
+        <el-checkbox label="Promotion activities" name="type" />
+        <el-checkbox label="Offline activities" name="type" />
+        <el-checkbox label="Simple brand exposure" name="type" />
+      </el-checkbox-group>
+    </EgFormItem>
+    <EgFormItem label="Resources">
+      <el-radio-group v-model="form.resource">
+        <el-radio label="Sponsor" />
+        <el-radio label="Venue" />
+      </el-radio-group>
+    </EgFormItem>
+    <EgFormItem label="Activity form">
+      <el-input v-model="form.desc" type="textarea" />
+    </EgFormItem>
+    <EgFormItem>
+      <el-button type="primary" @click="onSubmit">Create</el-button>
+      <el-button>Cancel</el-button>
     </EgFormItem>
   </EgForm>
 </template>

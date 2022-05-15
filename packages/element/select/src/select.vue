@@ -9,7 +9,14 @@ const props = defineProps(selectProps)
 const slots = useSlots()
 const attrs = useAttrs()
 const getText = () => {
-  const options = slots.default()[0].children.map(o => o.props)
+  const options = slots.default().reduce((cur, pre)=>{
+    if(pre.children){
+      cur = cur.concat(pre.children.map(o=>o.props))
+    }else {
+      cur.push(pre.props)
+    }
+    return cur
+  },[])
   const vlaue = attrs.multiple !== undefined && attrs.multiple !== false ? attrs.modelValue : attrs.modelValue ? [attrs.modelValue] : []
   const lables = vlaue.reduce((prev, curr) => {
     const item = options.find(o => o.value === curr)
