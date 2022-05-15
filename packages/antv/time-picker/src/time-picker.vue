@@ -10,7 +10,7 @@ const props = defineProps(timePickerProps)
 const slots = useSlots()
 const attrs = useAttrs()
 const getText = () => {
-  const vlaue = attrs.modelValue
+  const vlaue = attrs.value
   const format = attrs.format || 'HH:mm:ss'
   return vlaue ? dayjs(vlaue).format(format) : ''
 }

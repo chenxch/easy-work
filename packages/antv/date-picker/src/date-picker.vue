@@ -10,7 +10,7 @@ const props = defineProps(datePickerProps)
 const slots = useSlots()
 const attrs = useAttrs()
 const getText = () => {
-  const vlaue = attrs.modelValue
+  const vlaue = attrs.value
   const format = attrs.format || attrs.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'
   return vlaue ? dayjs(vlaue).format(format) : ''
 }

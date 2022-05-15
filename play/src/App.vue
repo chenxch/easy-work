@@ -199,9 +199,12 @@ const onSubmit = () => {
         value: 'beijing'
       }]" />
     </AEgFormItem>
-
-    <AEgFormItem name="remember" :wrapper-col="{ offset: 8, span: 16 }">
-      <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
+    <AEgFormItem label="Activity date time">
+      <div style="display: flex;">
+        
+       <AEgDatePicker v-model:value="form.date1" /> <span style="margin:0 8px">~</span>
+       <AEgTimePicker v-model:value="form.date2" />
+      </div>
     </AEgFormItem>
 
     <AEgFormItem :wrapper-col="{ offset: 8, span: 16 }">
