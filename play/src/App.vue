@@ -1,17 +1,17 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import { ref,reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { EgToggle } from '@easy-work/base'
-import { EgInput, EgSelect, EgForm, EgFormItem, EgDatePicker, EgTimePicker } from '@easy-work/element'
-import { 
+import { EgDatePicker, EgForm, EgFormItem, EgInput, EgSelect, EgTimePicker } from '@easy-work/element'
+import {
+  EgDatePicker as AEgDatePicker,
+  EgForm as AEgForm,
+  EgFormItem as AEgFormItem,
   EgInput as AEgInput,
   EgSelect as AEgSelect,
-  EgForm  as AEgForm,
-  EgFormItem as AEgFormItem,
-  EgDatePicker as AEgDatePicker, 
-  EgTimePicker as AEgTimePicker
- } from '@easy-work/antv'
+  EgTimePicker as AEgTimePicker,
+} from '@easy-work/antv'
 const toggle = ref(false)
 const text = ref('')
 
@@ -42,7 +42,6 @@ const options = [
   },
 ]
 
-
 // do not use same name with ref
 const form = reactive({
   name: '',
@@ -59,18 +58,18 @@ const onSubmit = () => {
   console.log('submit!')
 }
 
- const formState = reactive({
-      username: '',
-      password: '',
-      remember: true,
-    });
-    const onFinish = (values) => {
-      console.log('Success:', values);
-    };
+const formState = reactive({
+  username: '',
+  password: '',
+  remember: true,
+})
+const onFinish = (values) => {
+  console.log('Success:', values)
+}
 
-    const onFinishFailed = (errorInfo) => {
-      console.log('Failed:', errorInfo);
-    };
+const onFinishFailed = (errorInfo) => {
+  console.log('Failed:', errorInfo)
+}
 </script>
 
 <template>
@@ -117,7 +116,7 @@ const onSubmit = () => {
         <el-option label="Zone two" value="beijing" />
       </EgSelect>
     </EgFormItem>
-     <EgFormItem label="Activity zone mutiple" :toggle="!toggle">
+    <EgFormItem label="Activity zone mutiple" :toggle="!toggle">
       <EgSelect v-model="form.region" placeholder="please select your zone" mutiple>
         <el-option label="Zone one" value="shanghai" />
         <el-option label="Zone two" value="beijing" />
@@ -167,13 +166,15 @@ const onSubmit = () => {
       <el-input v-model="form.desc" type="textarea" />
     </EgFormItem>
     <EgFormItem>
-      <el-button type="primary" @click="onSubmit">Create</el-button>
+      <el-button type="primary" @click="onSubmit">
+        Create
+      </el-button>
       <el-button>Cancel</el-button>
     </EgFormItem>
   </EgForm>
   antv-form:
   <AEgForm
-  :toggle="toggle"
+    :toggle="toggle"
     :model="formState"
     name="basic"
     :label-col="{ span: 8 }"
@@ -190,25 +191,28 @@ const onSubmit = () => {
       <AEgInput v-model:value="formState.username" />
     </AEgFormItem>
 
-     <AEgFormItem label="Activity zone">
-      <AEgSelect v-model:value="form.region" placeholder="please select your zone" :options="[{
-        label: 'Zone one1',
-        value: 'shanghai'
-      }, {
-        label: 'Zone two',
-        value: 'beijing'
-      }]" />
+    <AEgFormItem label="Activity zone">
+      <AEgSelect
+        v-model:value="form.region" placeholder="please select your zone" :options="[{
+          label: 'Zone one1',
+          value: 'shanghai',
+        }, {
+          label: 'Zone two',
+          value: 'beijing',
+        }]"
+      />
     </AEgFormItem>
     <AEgFormItem label="Activity date time">
       <div style="display: flex;">
-        
-       <AEgDatePicker v-model:value="form.date1" /> <span style="margin:0 8px">~</span>
-       <AEgTimePicker v-model:value="form.date2" />
+        <AEgDatePicker v-model:value="form.date1" /> <span style="margin:0 8px">~</span>
+        <AEgTimePicker v-model:value="form.date2" />
       </div>
     </AEgFormItem>
 
     <AEgFormItem :wrapper-col="{ offset: 8, span: 16 }">
-      <a-button type="primary" html-type="submit">Submit</a-button>
+      <a-button type="primary" html-type="submit">
+        Submit
+      </a-button>
     </AEgFormItem>
   </AEgForm>
 </template>
