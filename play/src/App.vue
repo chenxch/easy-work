@@ -192,7 +192,7 @@ const onSubmit = () => {
 
      <AEgFormItem label="Activity zone">
       <AEgSelect v-model:value="form.region" placeholder="please select your zone" :options="[{
-        label: 'Zone one',
+        label: 'Zone one1',
         value: 'shanghai'
       }, {
         label: 'Zone two',
