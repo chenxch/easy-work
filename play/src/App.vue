@@ -195,7 +195,7 @@ const onFinishFailed = (errorInfo) => {
       <AEgSelect
         v-model:value="form.region" placeholder="please select your zone" :options="[{
           label: 'Zone one12333345',
-          value: 'shanghai1',
+          value: 'shanghai12',
         }, {
           label: 'Zone two',
           value: 'beijing',
