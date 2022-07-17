@@ -8,4 +8,4 @@ import 'ant-design-vue/dist/antd.css'
 const app = createApp(App)
 app.use(ElementPlus)
 app.use(Antd)
-app.mount('#app')
+12312
